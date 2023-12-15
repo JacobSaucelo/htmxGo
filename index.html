@@ -21,14 +21,20 @@
     <p>Color: {{.Color}}</p>
     {{ end }}
 
+    <hr />
+    <h1>Register your pets here</h1>
     <section>
-      <form>
+      <form hx-post="/add-pet/">
         <aside>
           <label for="pet-pettype">Pet Type</label>
           <input type="text" name="pettype" id="pet-pettype" />
-          <label for="pet-color">color</label>
+        </aside>
+        <br />
+        <aside>
+          <label for="pet-color">Color</label>
           <input type="text" name="color" id="pet-color" />
         </aside>
+        <button type="submit">Add pet</button>
       </form>
     </section>
   </body>
