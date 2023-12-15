@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"text/template"
@@ -28,8 +29,12 @@ func main() {
 	}
 
 	addPet := func(w http.ResponseWriter, r *http.Request) {
-		log.Print("htmx received")
-		log.Print(r.Header.Get("HX-Request"))
+		petType := r.PostFormValue("pet-type")
+		petColor := r.PostFormValue("pet-color")
+		htmlVal := fmt.Sprintf("<p>Pet: %s - Color: %s</p>", petType, petColor)
+		page, _ := template.New("p").Parse(htmlVal)
+		page.Execute(w, nil)
+
 	}
 
 	http.HandleFunc("/", homePage)
