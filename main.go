@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 	"text/template"
+	"time"
 )
 
 type Pet struct {
@@ -29,6 +30,7 @@ func main() {
 	}
 
 	addPet := func(w http.ResponseWriter, r *http.Request) {
+		time.Sleep(2 * time.Second)
 		petType := r.PostFormValue("pet-type")
 		petColor := r.PostFormValue("pet-color")
 		htmlVal := fmt.Sprintf("<p>Pet: %s - Color: %s</p>", petType, petColor)

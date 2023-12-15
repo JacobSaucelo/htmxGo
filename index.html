@@ -25,7 +25,12 @@
     <hr />
     <h1>Register your pets here</h1>
     <section>
-      <form hx-post="/add-pet/" hx-target="#pet-list" hx-swap="beforeend">
+      <form
+        hx-post="/add-pet/"
+        hx-target="#pet-list"
+        hx-swap="beforeend"
+        hx-indicator="#add-pet-loader"
+      >
         <aside>
           <label for="pet-pettype">Pet Type</label>
           <input type="text" name="pet-type" id="pet-pettype" />
@@ -35,7 +40,10 @@
           <label for="pet-color">Color</label>
           <input type="text" name="pet-color" id="pet-color" />
         </aside>
-        <button type="submit">Add pet</button>
+        <button type="submit">
+          <div class="htmx-indicator" id="add-pet-loader">Loading...</div>
+          Add pet
+        </button>
       </form>
     </section>
   </body>
