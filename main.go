@@ -13,7 +13,7 @@ type Pet struct {
 
 func main() {
 
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+	homePage := func(w http.ResponseWriter, r *http.Request) {
 		page := template.Must(template.ParseFiles("index.html"))
 
 		pets := map[string][]Pet{
@@ -25,7 +25,15 @@ func main() {
 		}
 
 		page.Execute(w, pets)
-	})
+	}
+
+	addPet := func(w http.ResponseWriter, r *http.Request) {
+		log.Print("htmx received")
+		log.Print(r.Header.Get("HX-Request"))
+	}
+
+	http.HandleFunc("/", homePage)
+	http.HandleFunc("/add-pet/", addPet)
 
 	log.Fatal(http.ListenAndServe(":3000", nil))
 
