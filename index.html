@@ -15,5 +15,10 @@
       width="100"
     />
     <h1>Hello world</h1>
+
+    {{range .Pets}}
+    <p>Pet: {{.PetType}}</p>
+    <p>Color: {{.Color}}</p>
+    {{ end }}
   </body>
 </html>
