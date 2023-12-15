@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 	"text/template"
@@ -33,9 +32,14 @@ func main() {
 		time.Sleep(2 * time.Second)
 		petType := r.PostFormValue("pet-type")
 		petColor := r.PostFormValue("pet-color")
-		htmlVal := fmt.Sprintf("<p>Pet: %s - Color: %s</p>", petType, petColor)
-		page, _ := template.New("p").Parse(htmlVal)
-		page.Execute(w, nil)
+		page := template.Must(template.ParseFiles("index.html"))
+		page.ExecuteTemplate(w, "pet-list-element", Pet{
+			PetType: petType,
+			Color:   petColor,
+		})
+		// htmlVal := fmt.Sprintf("<p>Pet: %s - Color: %s</p>", petType, petColor)
+		// page, _ := template.New("p").Parse(htmlVal)
+		// page.Execute(w, nil)
 
 	}
 

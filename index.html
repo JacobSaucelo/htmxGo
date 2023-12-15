@@ -17,9 +17,9 @@
     <h1>Hello world</h1>
 
     <article id="pet-list">
-      {{range .Pets}}
+      {{range .Pets}} {{ block "pet-list-element" .}}
       <p>Pet: {{.PetType}} - Color: {{.Color}}</p>
-      {{ end }}
+      {{ end }} {{ end }}
     </article>
 
     <hr />
