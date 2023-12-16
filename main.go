@@ -14,6 +14,8 @@ type Pet struct {
 
 func main() {
 
+	imageFiles := http.FileServer(http.Dir("./public"))
+
 	homePage := func(w http.ResponseWriter, r *http.Request) {
 		page := template.Must(template.ParseFiles("index.html"))
 
@@ -42,6 +44,11 @@ func main() {
 		// page.Execute(w, nil)
 
 	}
+
+	http.Handle("/public/", http.StripPrefix("/public/", imageFiles))
+	http.HandleFunc("/public", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "image.html")
+	})
 
 	http.HandleFunc("/", homePage)
 	http.HandleFunc("/add-pet/", addPet)
