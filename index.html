@@ -8,43 +8,46 @@
     <script src="https://unpkg.com/htmx.org@1.9.9"></script>
   </head>
   <body>
-    <img
-      src="public/goofyAhPicture.jpg"
-      alt="goofy ah picture"
-      height="100"
-      width="100"
-    />
-    <h1>Hello world</h1>
+    <center>
+      <img
+        src="public/goofyAhPicture.jpg"
+        alt="goofy ah picture"
+        draggable="false"
+        height="100"
+        width="100"
+      />
+      <h1>Hello world</h1>
 
-    <article id="pet-list">
-      {{range .Pets}} {{ block "pet-list-element" .}}
-      <p>Pet: {{.PetType}} - Color: {{.Color}}</p>
-      {{ end }} {{ end }}
-    </article>
+      <article id="pet-list">
+        {{range .Pets}} {{ block "pet-list-element" .}}
+        <p>Pet: {{.PetType}} - Color: {{.Color}}</p>
+        {{ end }} {{ end }}
+      </article>
 
-    <hr />
-    <h1>Register your pets here</h1>
-    <section>
-      <form
-        hx-post="/add-pet/"
-        hx-target="#pet-list"
-        hx-swap="beforeend"
-        hx-indicator="#add-pet-loader"
-      >
-        <aside>
-          <label for="pet-pettype">Pet Type</label>
-          <input type="text" name="pet-type" id="pet-pettype" />
-        </aside>
-        <br />
-        <aside>
-          <label for="pet-color">Color</label>
-          <input type="text" name="pet-color" id="pet-color" />
-        </aside>
-        <button type="submit">
-          <div class="htmx-indicator" id="add-pet-loader">Loading...</div>
-          Add pet
-        </button>
-      </form>
-    </section>
+      <hr />
+      <h1>Register your pets here</h1>
+      <section>
+        <form
+          hx-post="/add-pet/"
+          hx-target="#pet-list"
+          hx-swap="beforeend"
+          hx-indicator="#add-pet-loader"
+        >
+          <aside>
+            <label for="pet-pettype">Pet Type</label>
+            <input type="text" name="pet-type" id="pet-pettype" />
+          </aside>
+          <br />
+          <aside>
+            <label for="pet-color">Color</label>
+            <input type="text" name="pet-color" id="pet-color" />
+          </aside>
+          <button type="submit">
+            <div class="htmx-indicator" id="add-pet-loader">Loading...</div>
+            Add pet
+          </button>
+        </form>
+      </section>
+    </center>
   </body>
 </html>
